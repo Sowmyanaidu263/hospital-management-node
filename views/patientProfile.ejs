@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        .page-header {
+            font-family: 'Poppins', sans-serif;
+            color: #0B1E33;
+            padding: 24px 20px 10px 20px;
+        }
+        .profile-card {
+            background: #F7FAFC;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 10px 20px 24px 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            font-family: 'Inter', sans-serif;
+        }
+        .profile-card .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .profile-card .row:last-child {
+            border-bottom: none;
+        }
+        .profile-card .label {
+            font-weight: 600;
+            color: #0F6F64;
+        }
+        .profile-card .value {
+            color: #4A5568;
+            text-align: right;
+        }
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            color: #0B1E33;
+            padding: 0 20px;
+        }
+        .appt-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 10px 20px 30px 20px;
+            font-family: 'Inter', sans-serif;
+        }
+        .appt-card {
+            background: #F7FAFC;
+            border-radius: 12px;
+            padding: 18px;
+            flex: 1 1 240px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            border-left: 5px solid #2E9CCA;
+        }
+        .appt-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            margin: 0 0 8px 0;
+            color: #0F6F64;
+        }
+        .appt-card p {
+            font-size: 13px;
+            margin: 3px 0;
+            color: #4A5568;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/nav') %>
+
+    <h1 class="page-header">My Profile</h1>
+
+    <div class="profile-card">
+        <div class="row"><span class="label">Name</span><span class="value"><%= patient.name %></span></div>
+        <div class="row"><span class="label">Age</span><span class="value"><%= patient.age %></span></div>
+        <div class="row"><span class="label">Gender</span><span class="value"><%= patient.gender %></span></div>
+        <div class="row"><span class="label">Blood Group</span><span class="value"><%= patient.blood_group %></span></div>
+        <div class="row"><span class="label">Phone</span><span class="value"><%= patient.phone %></span></div>
+        <div class="row"><span class="label">Address</span><span class="value"><%= patient.address %></span></div>
+        <div class="row"><span class="label">Emergency Contact</span><span class="value"><%= patient.emergency_contact %></span></div>
+        <div class="row"><span class="label">Medical History</span><span class="value"><%= patient.medical_history %></span></div>
+    </div>
+
+    <h2 class="section-title">Appointment History</h2>
+    <div class="appt-cards">
+        <% appointments.forEach(a => { %>
+            <div class="appt-card">
+                <h3><%= a.doctor_name %></h3>
+                <p><%= a.specialization %></p>
+                <p><strong>Date:</strong> <%= formatDate(a.appointment_date) %></p>
+                <p><strong>Time:</strong> <%= a.appointment_time %></p>
+                <p><strong>Status:</strong> <%= a.status %></p>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>

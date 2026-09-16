@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Registration</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #0F6F64, #2E9CCA);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+        .signup-wrap {
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+        .signup-card {
+            background: white;
+            border-radius: 14px;
+            padding: 36px 30px;
+            width: 100%;
+            max-width: 440px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        .signup-card h1 {
+            font-family: 'Poppins', sans-serif;
+            color: #0B1E33;
+            font-size: 24px;
+            margin: 0 0 20px 0;
+        }
+        .signup-card label {
+            display: block;
+            font-weight: 600;
+            color: #0F6F64;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .signup-card input[type="text"],
+        .signup-card input[type="email"],
+        .signup-card input[type="password"],
+        .signup-card input[type="number"],
+        .signup-card select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #CBD5E0;
+            box-sizing: border-box;
+            margin-bottom: 14px;
+            font-family: 'Inter', sans-serif;
+        }
+        .days-group {
+            margin-bottom: 14px;
+            font-size: 14px;
+            color: #4A5568;
+        }
+        .days-group input[type="checkbox"] {
+            accent-color: #2E9CCA;
+            margin-right: 4px;
+        }
+        .days-group label {
+            display: inline;
+            font-weight: 400;
+            margin-right: 12px;
+            color: #4A5568;
+        }
+        .signup-card button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            background: #2E9CCA;
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 6px;
+        }
+        .signup-card p {
+            font-size: 13px;
+            color: #4A5568;
+            margin: 14px 0 0 0;
+        }
+        .signup-card a {
+            color: #2E9CCA;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-wrap">
+        <div class="signup-card">
+            <h1>Doctor Registration</h1>
+            <form action="/doctorRegister" method="POST">
+                <label>Full Name</label>
+                <input type="text" name="name" required>
+
+                <label>Email</label>
+                <input type="email" name="email" required>
+
+                <label>Phone Number</label>
+                <input type="text" name="phone" required>
+
+                <label>Password</label>
+                <input type="password" name="password" required>
+
+                <label>Specialization</label>
+                <select name="specialization" required>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Neurology">Neurology</option>
+                    <option value="Gynecology">Gynecology</option>
+                    <option value="Pediatrics">Pediatrics</option>
+                    <option value="Dermatology">Dermatology</option>
+                </select>
+
+                <label>Qualification</label>
+                <input type="text" name="qualification" placeholder="e.g. MBBS, MD">
+
+                <label>Experience (years)</label>
+                <input type="number" name="experience">
+
+                <label>Consultation Fee</label>
+                <input type="number" name="consultation_fee" step="0.01">
+
+                <label>Available Days</label>
+                <div class="days-group">
+                    <input type="checkbox" name="available_days" value="Mon" id="dMon"><label for="dMon">Mon</label>
+                    <input type="checkbox" name="available_days" value="Tue" id="dTue"><label for="dTue">Tue</label>
+                    <input type="checkbox" name="available_days" value="Wed" id="dWed"><label for="dWed">Wed</label>
+                    <input type="checkbox" name="available_days" value="Thu" id="dThu"><label for="dThu">Thu</label>
+                    <input type="checkbox" name="available_days" value="Fri" id="dFri"><label for="dFri">Fri</label>
+                    <input type="checkbox" name="available_days" value="Sat" id="dSat"><label for="dSat">Sat</label>
+                </div>
+
+                <label>Available Timing</label>
+                <input type="text" name="available_timing" placeholder="e.g. 10:00 AM - 4:00 PM">
+
+                <label>Hospital</label>
+                <select name="hospital_id" required>
+                    <% hospitals.forEach(h => { %>
+                        <option value="<%= h.id %>"><%= h.name %></option>
+                    <% }) %>
+                </select>
+
+                <button type="submit">Register as Doctor</button>
+            </form>
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </div>
+    </div>
+</body>
+</html>

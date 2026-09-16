@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Bill</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        .page-header {
+            font-family: 'Poppins', sans-serif;
+            color: #0B1E33;
+            padding: 24px 20px 10px 20px;
+        }
+        .form-card {
+            background: #F7FAFC;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 10px 20px 24px 20px;
+            max-width: 420px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            font-family: 'Inter', sans-serif;
+        }
+        .form-card label {
+            display: block;
+            font-weight: 600;
+            color: #0F6F64;
+            margin: 14px 0 6px 0;
+        }
+        .form-card select, .form-card input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #CBD5E0;
+            box-sizing: border-box;
+        }
+        .form-card button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            background: #F2704F;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/nav') %>
+
+    <h1 class="page-header">Create Bill</h1>
+
+    <div class="form-card">
+        <form action="/billing" method="POST">
+            <label>Patient</label>
+            <select name="patient_id" required>
+                <% patients.forEach(p => { %>
+                    <option value="<%= p.id %>"><%= p.name %></option>
+                <% }) %>
+            </select>
+
+            <label>Consultation Charges</label>
+            <input type="number" name="consultation_charges" step="0.01" value="0">
+
+            <label>Medicine Name</label>
+            <input type="text" name="medicine_name">
+
+            <label>Quantity</label>
+            <input type="number" name="medicine_quantity" value="0">
+
+            <label>Medicine Charges</label>
+            <input type="number" name="medicine_charges" step="0.01" value="0">
+
+            <label>Discount</label>
+            <input type="number" name="discount" step="0.01" value="0">
+
+            <label>Payment Mode</label>
+            <select name="payment_method">
+                <option value="cash">Cash</option>
+                <option value="online">Online</option>
+            </select>
+
+            <button type="submit">Generate Bill</button>
+        </form>
+    </div>
+</body>
+</html>

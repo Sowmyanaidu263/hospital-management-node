@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Appointment</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        .page-header {
+            font-family: 'Poppins', sans-serif;
+            color: #0B1E33;
+            padding: 24px 20px 10px 20px;
+        }
+        .form-card {
+            background: #F7FAFC;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 10px 20px 24px 20px;
+            max-width: 420px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            font-family: 'Inter', sans-serif;
+        }
+        .form-card label {
+            display: block;
+            font-weight: 600;
+            color: #0F6F64;
+            margin: 14px 0 6px 0;
+        }
+        .form-card select, .form-card input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #CBD5E0;
+            box-sizing: border-box;
+        }
+        .form-card button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            background: #2E9CCA;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .booking-for {
+            background: #E6FFFA;
+            color: #0F6F64;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .back-link {
+            display: block;
+            padding: 0 20px 30px 20px;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/nav') %>
+
+    <h1 class="page-header">Book an Appointment</h1>
+
+    <div class="form-card">
+        <form action="/book" method="POST">
+            <% if (patients.length > 0) { %>
+                <input type="hidden" name="patient_id" value="<%= patients[0].id %>">
+                <p class="booking-for">Booking for: <strong><%= patients[0].name %></strong></p>
+            <% } else { %>
+                <p style="color:red;">No patient profile found for your account. Please contact admin.</p>
+            <% } %>
+
+            <label>Doctor</label>
+            <select name="doctor_id" required>
+                <% doctors.forEach(d => { %>
+                    <option value="<%= d.id %>"><%= d.name %> (<%= d.specialization %> - <%= d.hospital_name %>)</option>
+                <% }) %>
+            </select>
+
+            <label>Date</label>
+            <input type="date" name="appointment_date" required>
+
+            <label>Time</label>
+            <input type="time" name="appointment_time" required>
+
+            <button type="submit">Book Appointment</button>
+        </form>
+    </div>
+    <a class="back-link" href="/">Back to Home</a>
+</body>
+</html>

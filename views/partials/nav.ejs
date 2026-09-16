@@ -1,0 +1,52 @@
+<style>
+    .navbar {
+        background: #0B1E33;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        font-family: 'Inter', sans-serif;
+    }
+    .navbar a {
+        color: #E2E8F0;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        padding: 14px 8px;
+        border-right: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .navbar a:hover {
+        background: #14304F;
+        color: #2E9CCA;
+    }
+</style>
+
+<nav class="navbar">
+    <a href="/">Home</a>
+
+    <% if (user) { %>
+        <% if (user.role === 'patient') { %>
+            <a href="/patientProfile">My Profile</a>
+            <a href="/book">Book Appointment</a>
+            <a href="/appointments">My Appointments</a>
+            <a href="/search">Find Hospital</a>
+            <a href="/uploadDocument">Upload Document</a>
+        <% } %>
+
+        <% if (user.role === 'doctor') { %>
+            <a href="/doctorDashboard">My Dashboard</a>
+        <% } %>
+
+        <% if (user.role === 'admin') { %>
+            <a href="/billing">Create Bill</a>
+            <a href="/bills">All Bills</a>
+            <a href="/admin/users">Manage Users</a>
+        <% } %>
+
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    <% } else { %>
+        <a href="/login">Login</a>
+        <a href="/signup">Sign Up</a>
+    <% } %>
+</nav>

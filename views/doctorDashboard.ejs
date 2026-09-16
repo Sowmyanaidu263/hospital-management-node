@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #0F6F64, #2E9CCA);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            margin: 20px;
+            font-family: 'Inter', sans-serif;
+        }
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            margin: 0 0 8px 0;
+        }
+        .hero p {
+            font-size: 15px;
+            opacity: 0.9;
+            margin: 2px 0;
+        }
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            color: #0B1E33;
+            padding: 0 20px;
+        }
+        .appt-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 10px 20px 30px 20px;
+            font-family: 'Inter', sans-serif;
+        }
+        .appt-card {
+            background: #F7FAFC;
+            border-radius: 12px;
+            padding: 18px;
+            flex: 1 1 240px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            border-left: 5px solid #2E9CCA;
+        }
+        .appt-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            margin: 0 0 8px 0;
+            color: #0F6F64;
+        }
+        .appt-card p {
+            font-size: 13px;
+            margin: 3px 0;
+            color: #4A5568;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/nav') %>
+
+    <div class="hero">
+        <h1>Welcome, Dr. <%= doctor.name %></h1>
+        <p>Specialization: <%= doctor.specialization %></p>
+        <p>Total Patients: <%= patientCount %></p>
+    </div>
+
+    <h2 class="section-title">Your Appointments</h2>
+    <div class="appt-cards">
+        <% appointments.forEach(a => { %>
+            <div class="appt-card">
+                <h3><%= a.patient_name %></h3>
+                <p><strong>Date:</strong> <%= formatDate(a.appointment_date) %></p>
+                <p><strong>Time:</strong> <%= a.appointment_time %></p>
+                <p><strong>Status:</strong> <%= a.status %></p>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #0F6F64, #2E9CCA);
+            color: white;
+            padding: 50px 30px;
+            border-radius: 12px;
+            margin: 20px;
+            font-family: 'Inter', sans-serif;
+        }
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            margin: 0 0 8px 0;
+        }
+        .hero p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin: 0;
+        }
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 0 20px 30px 20px;
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background: #F7FAFC;
+            border-radius: 12px;
+            padding: 22px;
+            flex: 1 1 200px;
+            text-decoration: none;
+            color: #0B1E33;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            transition: transform 0.15s ease;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+        }
+        .card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 17px;
+            margin: 0 0 6px 0;
+            color: #0F6F64;
+        }
+        .card p {
+            font-size: 14px;
+            margin: 0;
+            color: #4A5568;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/nav') %>
+
+    <div class="hero">
+        <h1>Welcome, <%= user.name %></h1>
+        <p>You're logged in as <%= user.role %></p>
+    </div>
+
+    <div class="cards">
+        <% if (user.role === 'patient') { %>
+            <a class="card" href="/patientProfile">
+                <h3>My Profile</h3>
+                <p>View your details and appointment history</p>
+            </a>
+            <a class="card" href="/book">
+                <h3>Book Appointment</h3>
+                <p>Find a doctor and schedule a visit</p>
+            </a>
+            <a class="card" href="/appointments">
+                <h3>My Appointments</h3>
+                <p>Track upcoming and past appointments</p>
+            </a>
+            <a class="card" href="/search">
+                <h3>Find a Hospital</h3>
+                <p>Search hospitals by disease or specialty</p>
+            </a>
+            <a class="card" href="/uploadDocument">
+                <h3>Upload Document</h3>
+                <p>Add lab reports or medical records</p>
+            </a>
+        <% } %>
+
+        <% if (user.role === 'doctor') { %>
+            <a class="card" href="/doctorDashboard">
+                <h3>My Dashboard</h3>
+                <p>View your patients and appointments</p>
+            </a>
+        <% } %>
+
+        <% if (user.role === 'admin') { %>
+            <a class="card" href="/billing">
+                <h3>Create Bill</h3>
+                <p>Generate a new patient bill</p>
+            </a>
+            <a class="card" href="/bills">
+                <h3>All Bills</h3>
+                <p>View and manage billing records</p>
+            </a>
+            <a class="card" href="/admin/users">
+                <h3>Manage Users</h3>
+                <p>View and update user roles</p>
+            </a>
+        <% } %>
+    </div>
+</body>
+</html>

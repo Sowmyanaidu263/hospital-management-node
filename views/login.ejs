@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #0F6F64, #2E9CCA);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+        .login-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .login-card {
+            background: white;
+            border-radius: 14px;
+            padding: 36px 30px;
+            width: 100%;
+            max-width: 360px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        .login-card h2 {
+            font-family: 'Poppins', sans-serif;
+            color: #0B1E33;
+            margin: 0 0 20px 0;
+        }
+        .login-card label {
+            display: block;
+            font-weight: 600;
+            color: #0F6F64;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .login-card input[type="email"], .login-card input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #CBD5E0;
+            box-sizing: border-box;
+            margin-bottom: 16px;
+        }
+        .remember-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #4A5568;
+        }
+        .remember-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #2E9CCA;
+    cursor: pointer;
+}
+        .login-card button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            background: #2E9CCA;
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .login-card p {
+            font-size: 13px;
+            color: #4A5568;
+            margin: 14px 0 0 0;
+        }
+        .login-card a {
+            color: #2E9CCA;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrap">
+        <div class="login-card">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                <label>Email</label>
+                <input type="email" name="email" required>
+
+                <label>Password</label>
+                <input type="password" name="password" required>
+
+                <div class="remember-row">
+                    <input type="checkbox" name="rememberMe" value="true" id="rememberMe">
+                    <label for="rememberMe" style="margin:0; font-weight:400; color:#4A5568;">Remember Me</label>
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="/signup">Sign up</a></p>
+            <p>Are you a doctor? <a href="/doctorRegister">Register here</a></p>
+            <p><a href="/forgotPassword">Forgot Password?</a></p>
+        </div>
+    </div>
+</body>
+</html>
