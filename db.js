@@ -1,14 +1,15 @@
-require('dotenv').config();
 const mysql = require('mysql2');
+require('dotenv').config();
 
-const connection = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+const db = mysql.createConnection({
+    host: process.env.MYSQLHOST || 'localhost',
+    user: process.env.MYSQLUSER || 'root',
+    password: process.env.MYSQLPASSWORD || '',
+    database: process.env.MYSQLDATABASE || 'hospital_db2',
+    port: process.env.MYSQLPORT || 3306
 });
 
-connection.connect((err) => {
+db.connect((err) => {
     if (err) {
         console.error('Database connection failed:', err);
         return;
@@ -16,4 +17,4 @@ connection.connect((err) => {
     console.log('Connected to MySQL database.');
 });
 
-module.exports = connection;
+module.exports = db;
