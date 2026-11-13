@@ -7,6 +7,9 @@ const db = mysql.createPool({
     password: process.env.MYSQLPASSWORD || '',
     database: process.env.MYSQLDATABASE || 'hospital_db2',
     port: process.env.MYSQLPORT || 3306,
+    ssl: process.env.MYSQLHOST && process.env.MYSQLHOST !== 'localhost'
+        ? { minVersion: 'TLSv1.2', rejectUnauthorized: true }
+        : undefined,
     waitForConnections: true,
     connectionLimit: 5
 });
