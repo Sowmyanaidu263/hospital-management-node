@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
-    secret: 'hospitalSecretKey',
+        secret: process.env.SESSION_SECRET || 'dev-only-secret',
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 24 * 60 * 60 * 1000 }
